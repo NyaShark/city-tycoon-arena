@@ -2,8 +2,6 @@
 
 一个可直接在浏览器运行的单页大富翁式城市经营游戏。无需安装依赖，支持桌面与移动端。
 
-在线游玩：[https://nyashark.github.io/city-tycoon-arena/](https://nyashark.github.io/city-tycoon-arena/)
-
 ## 玩法
 
 - 2–4 名玩家本地对局，可混合真人和三档 AI 对手
