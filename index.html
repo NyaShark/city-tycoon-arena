@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="都市大亨：一款带有地产、拍卖、股票、市场周期与 AI 对手的环城经营桌游。"
+    />
+    <meta name="theme-color" content="#ebe4d7" />
+    <title>都市大亨：环城争霸</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%231b2420'/%3E%3Cpath d='M13 47V27l10-6v26m5 0V16l12 7v24m5 0V29l6 4v14' fill='none' stroke='%23f2c86d' stroke-width='4'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="都市大亨首页">
+          <span class="brand-mark" id="brand-mark"></span>
+          <span>
+            <strong>都市大亨</strong>
+            <small>环城争霸</small>
+          </span>
+        </a>
+        <div class="round-strip" aria-live="polite">
+          <span class="round-item"><small>回合</small><b id="round-value">--</b></span>
+          <span class="round-item market-item"><small>市场</small><b id="market-value">--</b></span>
+          <span class="round-item"><small>基金池</small><b id="pot-value">--</b></span>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" id="sound-button" type="button" aria-label="开关音效" title="音效"></button>
+          <button class="icon-button" id="new-game-button" type="button" aria-label="新游戏" title="新游戏"></button>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <aside class="players-panel" aria-label="玩家信息">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">PLAYERS</span>
+              <h2>城市玩家</h2>
+            </div>
+            <span class="turn-badge" id="turn-badge">等待开局</span>
+          </div>
+          <div id="player-list" class="player-list"></div>
+          <div class="ranking-panel">
+            <span class="eyebrow">NET WORTH</span>
+            <h3>资产排行</h3>
+            <div id="ranking-list" class="ranking-list"></div>
+          </div>
+        </aside>
+
+        <section class="board-column" aria-label="游戏棋盘">
+          <div class="board-shadow">
+            <div id="board" class="board"></div>
+          </div>
+          <div class="board-caption">
+            <span id="board-status">选择玩家后开始游戏</span>
+            <span class="save-state" id="save-state">本地自动存档</span>
+          </div>
+        </section>
+
+        <aside class="control-panel" aria-label="操作面板">
+          <section class="turn-panel">
+            <div class="turn-player">
+              <span class="player-token large-token" id="active-token"></span>
+              <div>
+                <span class="eyebrow" id="active-kind">PLAYER</span>
+                <h2 id="active-name">等待开局</h2>
+              </div>
+            </div>
+            <div class="cash-line">
+              <span>可用现金</span>
+              <strong id="active-cash">--</strong>
+            </div>
+            <div class="dice-and-action">
+              <div class="dice-stage" aria-label="骰子">
+                <div class="die" id="die-one"><span></span></div>
+                <div class="die" id="die-two"><span></span></div>
+              </div>
+              <div id="primary-actions" class="primary-actions"></div>
+            </div>
+            <div id="turn-message" class="turn-message">准备好后开始你的城市版图。</div>
+          </section>
+
+          <nav class="panel-tabs" aria-label="操作分类">
+            <button type="button" class="tab-button active" data-tab="manage">经营</button>
+            <button type="button" class="tab-button" data-tab="assets">资产</button>
+            <button type="button" class="tab-button" data-tab="stocks">股市</button>
+          </nav>
+
+          <div class="tab-content active" id="tab-manage">
+            <div id="property-focus" class="property-focus"></div>
+            <div class="log-panel">
+              <div class="mini-heading">
+                <h3>城市动态</h3>
+                <span id="log-count">0</span>
+              </div>
+              <ol id="event-log" class="event-log"></ol>
+            </div>
+          </div>
+
+          <div class="tab-content" id="tab-assets">
+            <div class="mini-heading">
+              <h3>我的地产</h3>
+              <span id="asset-count">0</span>
+            </div>
+            <div id="asset-list" class="asset-list empty-state">
+              <p>尚未持有地产。</p>
+            </div>
+            <div class="stock-summary" id="stock-summary"></div>
+          </div>
+
+          <div class="tab-content" id="tab-stocks">
+            <div class="mini-heading">
+              <h3>城市交易所</h3>
+              <span>每回合波动</span>
+            </div>
+            <div id="stock-list" class="stock-list"></div>
+            <p class="market-note" id="market-note"></p>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <div id="modal-root" class="modal-root" aria-live="assertive"></div>
+    <div id="toast-root" class="toast-root" aria-live="polite"></div>
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
